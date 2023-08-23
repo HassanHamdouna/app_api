@@ -1,3 +1,5 @@
+import 'package:app_api/api/controllers/users_api_controller.dart';
+import 'package:app_api/models/user.dart';
 import 'package:flutter/material.dart';
 
 class UsersScreen extends StatefulWidget {
@@ -10,10 +12,36 @@ class UsersScreen extends StatefulWidget {
 class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar:  AppBar(
+    return Scaffold(
+      appBar: AppBar(
         centerTitle: true,
-        title: Text('Users'),
+        title: const Text('Users'),
+      ),
+      body: FutureBuilder<List<User>>(
+        future: UserApiController().getUsers(),
+        builder: (context, snapshot) {
+          print('object : ${snapshot.hasData}');
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.black,
+                    backgroundImage: NetworkImage(snapshot.data![index].image),
+                    radius: 40,
+                  ),
+                  title: Text(snapshot.data![index].firstName),
+                  subtitle: Text(snapshot.data![index].email),
+                );
+              },
+            );
+          } else {
+            return const Center(child: Text('No data'));
+          }
+        },
       ),
     );
   }
