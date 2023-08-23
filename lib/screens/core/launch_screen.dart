@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LaunchScreen extends StatefulWidget {
   const LaunchScreen({super.key});
@@ -13,14 +14,18 @@ class _LaunchScreenState extends State<LaunchScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3),() {
-      Navigator.pushReplacementNamed(context, '/home_screen');
+      Navigator.pushReplacementNamed(context, '/users_screen');
     },);
   }
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
       body: Center(
-        child: Text('Welcome',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 40)),
+        child: Text('Welcome',style: GoogleFonts.poppins(
+          fontWeight: FontWeight.w600,
+          fontSize: 40,
+          color: Colors.black
+        )),
       ),
     );
   }
