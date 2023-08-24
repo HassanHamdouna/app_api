@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:app_api/api/api_settings.dart';
 import 'package:app_api/helpers/api_helper.dart';
@@ -50,6 +51,20 @@ class AuthApiController with ApiHelper {
     if (response.statusCode == 201 || response.statusCode == 400) {
       var json = jsonDecode(response.body);
       return ApiRespones(json['message'], json['status']);
+    }
+    return errorRespoens;
+  }
+
+  Future<ApiRespones> logOut() async {
+    String token =
+        SharedPrfController().getVauleFor<String>(key: PrefKeys.token.name)!;
+    Uri uri = Uri.parse(ApiSettings.logout);
+    var response = await http.get(uri, headers: {
+      HttpHeaders.authorizationHeader: token,
+      HttpHeaders.acceptHeader: 'application/json',
+    });
+    if (response.statusCode == 200 || response.statusCode == 401) {
+      return ApiRespones('Logged out successfully', true);
     }
     return errorRespoens;
   }
