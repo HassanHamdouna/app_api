@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:app_api/api/api_settings.dart';
 import 'package:app_api/models/api_respones.dart';
 import 'package:app_api/models/student.dart';
+import 'package:app_api/pref/shared_pref_controller.dart';
 import 'package:http/http.dart' as http;
 
 class AuthApiController {
@@ -30,8 +31,23 @@ class AuthApiController {
       var json = jsonDecode(respones.body);
       if (respones.statusCode == 200) {
         Student student = Student.fromJson(json(['object']));
-        //TODO: Save student in Shared Preferences
+        SharedPrfController().save(student);
       }
+      return ApiRespones(json['message'], json['status']);
+    }
+    return ApiRespones('Something went wrong, try again', false);
+  }
+
+  Future<ApiRespones> register(Student student) async {
+    Uri uri = Uri.parse(ApiSettings.register);
+    var response = await http.post(uri, body: {
+      'full_name': student.fullName,
+      'email': student.email,
+      'password': student.password,
+      'gender': student.gender,
+    });
+    if (response.statusCode == 201 || response.statusCode == 400) {
+      var json = jsonDecode(response.body);
       return ApiRespones(json['message'], json['status']);
     }
     return ApiRespones('Something went wrong, try again', false);

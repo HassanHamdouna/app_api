@@ -9,6 +9,8 @@ class Student {
   late  String refreshToken;
   late  bool isActive;
 
+  late String password;
+
   Student();
 
   Student.fromJson(Map<String, dynamic> json) {
