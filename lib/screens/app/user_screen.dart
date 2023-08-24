@@ -20,7 +20,6 @@ class _UsersScreenState extends State<UsersScreen> {
       body: FutureBuilder<List<User>>(
         future: UserApiController().getUsers(),
         builder: (context, snapshot) {
-          print('object : ${snapshot.hasData}');
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData && snapshot.data!.isNotEmpty) {
