@@ -1,3 +1,4 @@
+import 'package:app_api/pref/shared_pref_controller.dart';
 import 'package:app_api/screens/app/user_screen.dart';
 import 'package:app_api/screens/auth/change_password_screen.dart';
 import 'package:app_api/screens/auth/forget_password_screen.dart';
@@ -8,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrfController().initSharedPref();
   runApp(const MyApp());
 }
 
@@ -41,8 +44,10 @@ class MyApp extends StatelessWidget {
             '/users_screen': (context) => const UsersScreen(),
             '/login_screen': (context) => const LoginScreen(),
             '/register_screen': (context) => const RegisterScreen(),
-            '/change_password_screen': (context) => const ChangePasswordScreen(),
-            '/forget_password_screen': (context) => const ForgotPasswordScreen(),
+            '/change_password_screen': (context) =>
+                const ChangePasswordScreen(),
+            '/forget_password_screen': (context) =>
+                const ForgotPasswordScreen(),
           },
         );
       },
