@@ -25,6 +25,10 @@ class SharedPrfController {
     return null;
   }
 
+  void clear() async{
+    _sharedPreferences.clear();
+  }
+
   void save(Student student) async {
     await _sharedPreferences.setBool(PrefKeys.loggedIn.name, true);
     await _sharedPreferences.setInt(PrefKeys.id.name, student.id);

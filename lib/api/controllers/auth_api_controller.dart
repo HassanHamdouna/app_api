@@ -64,6 +64,7 @@ class AuthApiController with ApiHelper {
       HttpHeaders.acceptHeader: 'application/json',
     });
     if (response.statusCode == 200 || response.statusCode == 401) {
+      SharedPrfController().clear();
       return ApiRespones('Logged out successfully', true);
     }
     return errorRespoens;
