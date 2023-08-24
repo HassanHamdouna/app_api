@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:app_api/api/api_settings.dart';
+import 'package:app_api/helpers/api_helper.dart';
 import 'package:app_api/models/api_respones.dart';
 import 'package:app_api/models/student.dart';
 import 'package:app_api/pref/shared_pref_controller.dart';
 import 'package:http/http.dart' as http;
 
-class AuthApiController {
+class AuthApiController with ApiHelper {
   /// New Ani Request:
   /// 1) Convent URI in APTSettings from String to URI
   /// 2) Detect request method. (Get/Past /Put/Patch /Delete)
@@ -35,7 +36,7 @@ class AuthApiController {
       }
       return ApiRespones(json['message'], json['status']);
     }
-    return ApiRespones('Something went wrong, try again', false);
+    return errorRespoens;
   }
 
   Future<ApiRespones> register(Student student) async {
@@ -50,6 +51,6 @@ class AuthApiController {
       var json = jsonDecode(response.body);
       return ApiRespones(json['message'], json['status']);
     }
-    return ApiRespones('Something went wrong, try again', false);
+    return errorRespoens;
   }
 }
