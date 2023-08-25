@@ -1,3 +1,4 @@
+import 'package:app_api/pref/shared_pref_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +15,9 @@ class _LaunchScreenState extends State<LaunchScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3),() {
-      Navigator.pushReplacementNamed(context, '/users_screen');
+      bool isLogin = SharedPrfController().getVauleFor<bool>(key: PrefKeys.loggedIn.name)?? false ;
+      String rout = isLogin? '/users_screen':'/login_screen';
+      Navigator.pushReplacementNamed(context, rout);
     },);
   }
   @override

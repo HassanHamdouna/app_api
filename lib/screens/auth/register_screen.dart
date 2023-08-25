@@ -1,3 +1,7 @@
+import 'package:app_api/api/controllers/auth_api_controller.dart';
+import 'package:app_api/helpers/context_extenssion.dart';
+import 'package:app_api/models/api_respones.dart';
+import 'package:app_api/models/student.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,12 +126,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _passwordTextController.text.isNotEmpty) {
       return true;
     }
-    // context.showSnackBar(message: 'Enter required data', error: true);
+    context.showSnackBar(message: 'Enter required data', error: true);
 
     return false;
   }
 
   void _register() async {
+    ApiRespones respones = await AuthApiController().register(student);
+    if(respones.status){
+      Navigator.pop(context);
+    }
+    context.showSnackBar(message: respones.message, error: !respones.status);
+  }
+  Student get student {
+    Student student = Student();
+    student.email = _emailTextController.text;
+    student.fullName = _nameTextController.text;
+    student.password = _passwordTextController.text;
+    student.gender = 'M';
+    return student;
   }
   void clearEditText() {
     _nameTextController.text = '';
