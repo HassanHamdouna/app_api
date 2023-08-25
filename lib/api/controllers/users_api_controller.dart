@@ -21,7 +21,7 @@ class UserApiController {
       var json = jsonDecode(response.body);
       var dataJsonObject = json['data'] as List;
       List<User> listUsers = dataJsonObject.map((index) => User.fromJson(index)).toList();
-
+      print('listUsers.length : ${listUsers.length}');
       return listUsers;
     }
     return [];
