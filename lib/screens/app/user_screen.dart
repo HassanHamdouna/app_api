@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:app_api/api/controllers/auth_api_controller.dart';
 import 'package:app_api/api/controllers/users_api_controller.dart';
+import 'package:app_api/models/api_respones.dart';
 import 'package:app_api/models/user.dart';
+import 'package:app_api/pref/shared_pref_controller.dart';
 import 'package:app_api/widgets/refresh_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +23,15 @@ class _UsersScreenState extends State<UsersScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Users'),
+        actions: [
+          IconButton(onPressed: () async{
+            ApiRespones respones = await AuthApiController().logOut();
+            if(respones.status){
+              SharedPrfController().clear();
+              Navigator.pushReplacementNamed(context, '/login_screen');
+            }
+          }, icon: Icon(Icons.logout)),
+        ],
       ),
       body: FutureBuilder<List<User>>(
         future: UserApiController().getUsers(),

@@ -32,7 +32,7 @@ class AuthApiController with ApiHelper {
     if (respones.statusCode == 200 || respones.statusCode == 400) {
       var json = jsonDecode(respones.body);
       if (respones.statusCode == 200) {
-        Student student = Student.fromJson(json(['object']));
+        Student student = Student.fromJson(json['object']);
         SharedPrfController().save(student);
       }
       return ApiRespones(json['message'], json['status']);

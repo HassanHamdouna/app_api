@@ -1,3 +1,6 @@
+import 'package:app_api/api/controllers/auth_api_controller.dart';
+import 'package:app_api/helpers/context_extenssion.dart';
+import 'package:app_api/models/api_respones.dart';
 import 'package:app_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -144,11 +147,18 @@ class _LoginScreenState extends State<LoginScreen> {
         _passwordTextController.text.isNotEmpty) {
       return true;
     }
-    // context.showSnackBar(message: 'Enter required data', error: true);
+    context.showSnackBar(message: 'Enter required data', error: true);
     return false;
   }
 
-  void _login() async {}
+  void _login() async {
+    ApiRespones respones = await AuthApiController().login(email: _emailTextController.text, password: _passwordTextController.text);
+    if(respones.status){
+      Navigator.pushReplacementNamed(context, '/users_screen');
+    }
+    context.showSnackBar(message: respones.message, error: !respones.status);
+
+  }
 
   void clearEditText() {
     _emailTextController.text = '';
