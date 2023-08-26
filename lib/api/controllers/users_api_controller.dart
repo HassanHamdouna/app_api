@@ -20,9 +20,30 @@ class UserApiController {
     if (response.statusCode == 200) {
       var json = jsonDecode(response.body);
       var dataJsonObject = json['data'] as List;
-      List<User> listUsers = dataJsonObject.map((index) => User.fromJson(index)).toList();
-      print('listUsers.length : ${listUsers.length}');
+      List<User> listUsers =
+          dataJsonObject.map((index) => User.fromJson(index)).toList();
       return listUsers;
+    }
+    return [];
+  }
+
+  Future<List<User>> getUsersSearch(
+      {required String firstName, required String jobTitle}) async {
+    Uri uri = Uri.parse(ApiSettings.usersSearch);
+    var respones = await http.post(uri, body: {
+      'first_name': firstName,
+      'job_title': jobTitle,
+    });
+    if (respones.statusCode == 200) {
+      var json = jsonDecode(respones.body);
+      var dataJsonObject = json['data'] as List;
+      try {
+        List<User> listUsers =
+            dataJsonObject.map((index) => User.fromJson(index)).toList();
+        return listUsers;
+      } catch (e) {
+        print('Error creating User objects: $e');
+      }
     }
     return [];
   }
