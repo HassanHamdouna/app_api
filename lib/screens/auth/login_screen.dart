@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 alignment: AlignmentDirectional.topEnd,
                 child: TextButton(
                     onPressed: () =>
-                        Navigator.pushNamed(context, '/forgot_password_screen'),
+                        Navigator.pushNamed(context, '/forget_password_screen'),
                     child: Text(
                       'Forget Password ?',
                       style: GoogleFonts.poppins(

@@ -1,3 +1,6 @@
+import 'package:app_api/api/controllers/auth_api_controller.dart';
+import 'package:app_api/helpers/context_extenssion.dart';
+import 'package:app_api/models/api_respones.dart';
 import 'package:app_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +31,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -125,8 +129,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     if (_emailController.text.isNotEmpty) {
       return true;
     }
+    context.showSnackBar(message: 'Enter required data', error: true);
     return false;
   }
 
-  void _forgotPassword() async {}
+  void _forgotPassword() async {
+    ApiRespones respones  = await AuthApiController().forgetPassword(email: _emailController.text);
+    if(respones.status){
+      Navigator.pushReplacementNamed(context, '/change_password_screen');
+    }
+    context.showSnackBar(message: respones.message, error: !respones.status);
+
+  }
+
 }

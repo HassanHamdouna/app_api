@@ -44,10 +44,8 @@ class MyApp extends StatelessWidget {
             '/users_screen': (context) => const UsersScreen(),
             '/login_screen': (context) => const LoginScreen(),
             '/register_screen': (context) => const RegisterScreen(),
-            '/change_password_screen': (context) =>
-                const ChangePasswordScreen(),
-            '/forget_password_screen': (context) =>
-                const ForgotPasswordScreen(),
+            '/change_password_screen': (context) => const ChangePasswordScreen(),
+            '/forget_password_screen': (context) => const ForgotPasswordScreen(),
           },
         );
       },

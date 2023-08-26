@@ -1,3 +1,6 @@
+import 'package:app_api/api/controllers/auth_api_controller.dart';
+import 'package:app_api/helpers/context_extenssion.dart';
+import 'package:app_api/models/api_respones.dart';
 import 'package:app_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,21 +14,24 @@ class ChangePasswordScreen extends StatefulWidget {
 }
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-  late TextEditingController _oldPasswordController;
+  late TextEditingController _emailController;
+  late TextEditingController _codeController;
   late TextEditingController _newPasswordController;
   late TextEditingController _confirmPasswordController;
 
   @override
   void initState() {
     super.initState();
-    _oldPasswordController = TextEditingController();
+    _emailController = TextEditingController();
+    _codeController = TextEditingController();
     _newPasswordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _oldPasswordController.dispose();
+    _emailController.dispose();
+    _codeController.dispose();
     _newPasswordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
@@ -71,13 +77,25 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   height: 29,
                 ),
                 AppTextField(
-                  hint: 'old password',
-                  prefixIcon: Icons.lock,
+                  hint: 'email',
+                  prefixIcon: Icons.email,
                   keyboardType: TextInputType.name,
                   focusedBorderColor: const Color(0xffEDEDED),
                   obscureText: false,
                   suffixIcon: null,
-                  controller: _oldPasswordController,
+                  controller: _emailController,
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                AppTextField(
+                  hint: 'code',
+                  prefixIcon: Icons.code,
+                  keyboardType: TextInputType.number,
+                  focusedBorderColor: const Color(0xffEDEDED),
+                  obscureText: false,
+                  suffixIcon: null,
+                  controller: _codeController,
                 ),
                 SizedBox(
                   height: 10.h,
@@ -141,16 +159,27 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   }
 
   bool _checkDate() {
-    if (_oldPasswordController.text.isNotEmpty &&
+    if (_emailController.text.isNotEmpty &&
+        _codeController.text.isNotEmpty &&
         _newPasswordController.text.isNotEmpty &&
         _confirmPasswordController.text.isNotEmpty) {
       if (_newPasswordController.text == _confirmPasswordController.text) {
         return true;
+
       }
+      context.showSnackBar(message: ' newPassword != confirmPassword', error: true);
       return false;
     }
+    context.showSnackBar(message: 'Enter required data', error: true);
+
     return false;
   }
 
-  void _changePassword() async {}
+  void _changePassword() async {
+    ApiRespones respones = await AuthApiController().changePassword(email: _emailController.text, code: _codeController.text, password: _newPasswordController.text, passwordConfirmation: _confirmPasswordController.text);
+    if(respones.status){
+      Navigator.pop(context);
+    }
+    context.showSnackBar(message: respones.message, error: !respones.status);
+  }
 }

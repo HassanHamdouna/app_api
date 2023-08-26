@@ -17,26 +17,20 @@ class User {
   User();
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id']?? int;
-    firstName = json['first_name']?? String;
-    lastName = json['last_name']?? String;
-    email = json['email']?? String;
-    mobile = json['mobile']?? String;
-    bio = json['bio']?? String;
-    jobTitle = json['job_title']?? String;
-    latitude = json['latitude']?? double;
-    longitude = json['longitude']?? double;
-    country = json['country']?? String;
-    image = json['image']?? String;
-    active = json['active']?? int;
-    emailVerifiedAt = json['email_verified_at']?? String;
-    imagesCount = json['images_count']?? 0;
-  }
-
-  User.fromJson2(Map<String, dynamic> json) {
-    id = json['id'];
-    firstName = json['first_name'];
-    jobTitle = json['job_title'];
+    id = json['id'] ?? int;
+    firstName = json['first_name'] ?? String;
+    lastName = json['last_name'] ?? String;
+    email = json['email'] ?? String;
+    mobile = json['mobile'] ?? String;
+    bio = json['bio'] ?? String;
+    jobTitle = json['job_title'] ?? String;
+    latitude = json['latitude'] ?? double;
+    longitude = json['longitude'] ?? double;
+    country = json['country'] ?? String;
+    image = json['image'] ?? String;
+    active = json['active'] ?? int;
+    emailVerifiedAt = json['email_verified_at'] ?? String;
+    imagesCount = json['images_count'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {

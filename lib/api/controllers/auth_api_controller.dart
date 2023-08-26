@@ -69,4 +69,33 @@ class AuthApiController with ApiHelper {
     }
     return errorRespoens;
   }
+
+  Future<ApiRespones> forgetPassword({required String email}) async {
+    Uri uri = Uri.parse(ApiSettings.forgetPassword);
+    var response = await http.post(uri, body: {
+      'email': email,
+    });
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+      return ApiRespones(json['message'], json['status']);
+    }
+    return errorRespoens;
+  }
+
+  Future<ApiRespones> changePassword({required String email,required String code,required String password,required String passwordConfirmation}) async {
+    Uri uri = Uri.parse(ApiSettings.forgetPassword);
+    var response = await http.post(uri, body: {
+      'email': email,
+      'code': code,
+      'password': password,
+      'password_confirmation': passwordConfirmation,
+    });
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+      return ApiRespones(json['message'], json['status']);
+    }
+    return errorRespoens;
+  }
+
+
 }
