@@ -40,4 +40,15 @@ class ImagesApiController with ApiHelper {
     }
     return [];
   }
+
+  Future<ApiRespones> deleteImage({required int id}) async {
+    Uri uri = Uri.parse(
+        ApiSettings.imagesStudent.replaceFirst('{id}', id.toString()));
+    var respones = await http.delete(uri, headers: headers);
+    if (respones.statusCode == 200) {
+      var json = jsonDecode(respones.body);
+      return ApiRespones(json['message'], json['status']);
+    }
+    return errorRespoens;
+  }
 }
