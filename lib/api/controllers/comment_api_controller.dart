@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app_api/models/Comment.dart';
+import 'package:app_api/models/comment.dart';
 import 'package:http/http.dart' as http;
 
 class CommentApiController {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:app_api/api/controllers/comment_api_controller.dart';
-import 'package:app_api/models/Comment.dart';
+import 'package:app_api/models/comment.dart';
 import 'package:app_api/widgets/refresh_widget.dart';
 import 'package:flutter/material.dart';
 
