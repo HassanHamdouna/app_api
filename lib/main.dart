@@ -1,5 +1,7 @@
 import 'package:app_api/pref/shared_pref_controller.dart';
 import 'package:app_api/screens/app/comment_screen.dart';
+import 'package:app_api/screens/app/images/images_screen.dart';
+import 'package:app_api/screens/app/images/upload_image_screen.dart';
 import 'package:app_api/screens/app/user_screen.dart';
 import 'package:app_api/screens/auth/change_password_screen.dart';
 import 'package:app_api/screens/auth/forget_password_screen.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.white,
             textTheme: TextTheme(
               bodyLarge: GoogleFonts.poppins(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
             '/change_password_screen': (context) => const ChangePasswordScreen(),
             '/forget_password_screen': (context) => const ForgotPasswordScreen(),
             '/comment_screen': (context) => const CommentScreen(),
+            '/images_screen': (context) => const ImagesScreen(),
+            '/upload_image_screen': (context) => const UploadImageScreen(),
           },
         );
       },

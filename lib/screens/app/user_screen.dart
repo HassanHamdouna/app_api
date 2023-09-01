@@ -50,6 +50,9 @@ class _UsersScreenState extends State<UsersScreen> {
           IconButton(onPressed: ()  {
             Navigator.pushNamed(context, '/comment_screen');
           }, icon: Icon(Icons.comment)),
+          IconButton(onPressed: ()  {
+            Navigator.pushNamed(context, '/images_screen');
+          }, icon: Icon(Icons.image)),
         ],
       ),
       body: Column(
