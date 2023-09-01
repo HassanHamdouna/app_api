@@ -1,4 +1,5 @@
 import 'package:app_api/pref/shared_pref_controller.dart';
+import 'package:app_api/screens/app/comment_screen.dart';
 import 'package:app_api/screens/app/user_screen.dart';
 import 'package:app_api/screens/auth/change_password_screen.dart';
 import 'package:app_api/screens/auth/forget_password_screen.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
             '/register_screen': (context) => const RegisterScreen(),
             '/change_password_screen': (context) => const ChangePasswordScreen(),
             '/forget_password_screen': (context) => const ForgotPasswordScreen(),
+            '/comment_screen': (context) => const CommentScreen(),
           },
         );
       },

@@ -47,6 +47,9 @@ class _UsersScreenState extends State<UsersScreen> {
               Navigator.pushReplacementNamed(context, '/login_screen');
             }
           }, icon: Icon(Icons.logout)),
+          IconButton(onPressed: ()  {
+            Navigator.pushNamed(context, '/comment_screen');
+          }, icon: Icon(Icons.comment)),
         ],
       ),
       body: Column(
