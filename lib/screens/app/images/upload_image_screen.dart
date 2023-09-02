@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:app_api/get/images_getx_contoller.dart';
 import 'package:app_api/helpers/context_extenssion.dart';
+import 'package:app_api/models/api_respones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,16 +50,17 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             Expanded(
               child: _pickedImage == null
                   ? IconButton(
-                      onPressed: () => _openGallery(),
-                      icon: const Icon(Icons.camera, size: 60),
-                    )
-                  : Image.file(File(_pickedImage!.path)),
+                onPressed: () => _openGallery(),
+                icon: const Icon(Icons.camera, size: 60),
+              )
+                  : InkWell(onTap: ()=>_openGallery(),child: Image.file(File(_pickedImage!.path))),
             ),
             ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 40)),
                 onPressed: () => _performUpload(),
-                icon: const Icon(Icons.cloud_download_rounded, color: Colors.white),
+                icon: const Icon(
+                    Icons.cloud_download_rounded, color: Colors.white),
                 label: Text(
                   'upload',
                   style: GoogleFonts.poppins(
@@ -76,6 +79,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
       _upload();
     }
   }
+
   bool _checkData() {
     if (_pickedImage != null) {
       return true;
@@ -83,18 +87,31 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
     context.showSnackBar(message: 'pick mage to upload', error: true);
     return false;
   }
-  void _upload()  {
-    _uploadProgress(value: 1);
+
+  void _upload() async {
+    _uploadProgress();
+    ApiRespones apiRespones = await ImagesGetxController.to.uploadImage(
+        _pickedImage!.path);
+    _uploadProgress(value: apiRespones.status ? 1 : 0);
+    context.showSnackBar(
+        message: apiRespones.message, error: !apiRespones.status);
+    backScreen();
   }
+
+  void backScreen() {
+    if (_progressValue == 1) {
+      Navigator.pop(context);
+    }
+  }
+
   void _uploadProgress({double? value}) {
-    setState(() {
-      _progressValue = value;
-    });
+    setState(() => _progressValue = value);
   }
 
 
   void _openGallery() async {
-    XFile? fileImage = await _imagePicker.pickImage(source: ImageSource.gallery);
+    XFile? fileImage = await _imagePicker.pickImage(
+        source: ImageSource.gallery);
     if (fileImage != null) {
       setState(() {
         _pickedImage = fileImage;

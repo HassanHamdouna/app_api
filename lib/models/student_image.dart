@@ -1,8 +1,8 @@
 class StudentImage {
-  String? image;
-  int? studentId;
-  int? id;
-  String? imageUrl;
+  late String? image;
+  late int? studentId;
+  late  dynamic id;
+  late String? imageUrl;
 
   StudentImage({this.image, this.studentId, this.id, this.imageUrl});
 
