@@ -39,7 +39,7 @@ class _CommentScreenState extends State<CommentScreen> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    leading: CircleAvatar(
+                    leading: const CircleAvatar(
                       backgroundColor: Colors.black,
                       // backgroundImage: NetworkImage(snapshot.data![index].name),
                       radius: 40,

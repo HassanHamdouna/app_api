@@ -17,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController _emailTextController;
   late TextEditingController _passwordTextController;
   bool _obscure = true;
-  late String _language;
 
   @override
   void initState() {
@@ -37,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('login'),
+        title: const Text('login'),
         actions: [
           IconButton(
             onPressed: () {},
@@ -118,11 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('new_account_message'),
+                  const Text('new_account_message'),
                   TextButton(
                     onPressed: () =>
                         Navigator.pushNamed(context, '/register_screen'),
-                    child: Text('create_account'),
+                    child: const Text('create_account'),
                   ),
                 ],
               ),

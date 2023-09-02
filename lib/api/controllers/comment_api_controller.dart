@@ -12,7 +12,6 @@ class CommentApiController {
       var dataJsonObject = List.of(json);
       List<Comment> listUsers =
       dataJsonObject.map((index) => Comment.fromJson(index)).toList();
-      print('listUsers :: ${listUsers.length}');
 
       return listUsers;
     }

@@ -42,7 +42,6 @@ class UserApiController {
             dataJsonObject.map((index) => User.fromJson(index)).toList();
         return listUsers;
       } catch (e) {
-        print('Error creating User objects: $e');
       }
     }
     return [];

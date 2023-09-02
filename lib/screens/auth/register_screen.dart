@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('register'),
+        title: const Text('register'),
       ),
       body: Stack(children: [
         Padding(

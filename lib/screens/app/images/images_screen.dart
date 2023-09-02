@@ -31,7 +31,7 @@ class ImagesScreen extends StatelessWidget {
           init: ImagesGetxController(),
           builder: (ImagesGetxController controller) {
             if (controller.loading.isTrue) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (controller.listImage.isNotEmpty) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -67,7 +67,7 @@ class ImagesScreen extends StatelessWidget {
                             decoration:
                                 const BoxDecoration(color: Colors.black26),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.only(start: 20),
+                              padding: EdgeInsetsDirectional.only(start: 20.w),
                               child: Row(
                                 children: [
                                   Expanded(

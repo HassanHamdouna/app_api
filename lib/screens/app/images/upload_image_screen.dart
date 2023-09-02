@@ -57,7 +57,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
             ),
             ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 40)),
+                    minimumSize: const Size(double.infinity, 40)),
                 onPressed: () => _performUpload(),
                 icon: const Icon(
                     Icons.cloud_download_rounded, color: Colors.white),
