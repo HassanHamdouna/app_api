@@ -3,8 +3,8 @@ import 'package:app_api/models/api_respones.dart';
 import 'package:app_api/models/student_image.dart';
 import 'package:get/get.dart';
 
-class ImageGetxController extends GetxController {
-  static ImageGetxController get to => Get.find();
+class ImagesGetxController extends GetxController {
+  static ImagesGetxController get to => Get.find();
   final ImagesApiController _apiController = ImagesApiController();
   RxList<StudentImage> listImage = <StudentImage>[].obs;
   RxBool loading = false.obs;
@@ -16,9 +16,9 @@ class ImageGetxController extends GetxController {
   }
 
   void readImage() async {
-    loading.value = false;
-    listImage.value = await _apiController.getImage();
     loading.value = true;
+    listImage.value = await _apiController.getImage();
+    loading.value = false;
 
   }
 
