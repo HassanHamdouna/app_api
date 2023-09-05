@@ -36,7 +36,7 @@ class _CommentScreenState extends State<CommentScreen> {
               child: ListView.builder(
                 shrinkWrap: true,
                 primary: Platform.isAndroid ? true : false,
-                itemCount: snapshot.data!.length,
+                itemCount: snapshot.data!.length ,
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: const CircleAvatar(

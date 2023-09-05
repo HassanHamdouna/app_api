@@ -7,7 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key});
+   ChangePasswordScreen({super.key, this.code});
+
+   String? code ;
 
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
@@ -64,7 +66,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 const SizedBox(
                   height: 70,
                 ),
-                Text('Change Password',
+                Text('Change Password ${widget.code!}',
                     style: GoogleFonts.ubuntu(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -159,19 +161,25 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   }
 
   bool _checkDate() {
-    if (_emailController.text.isNotEmpty &&
-        _codeController.text.isNotEmpty &&
-        _newPasswordController.text.isNotEmpty &&
-        _confirmPasswordController.text.isNotEmpty) {
+    if (_emailController.text.isNotEmpty && _codeController.text.isNotEmpty && _newPasswordController.text.isNotEmpty && _confirmPasswordController.text.isNotEmpty) {
       if (_newPasswordController.text == _confirmPasswordController.text) {
-        return true;
-
+        return _checkCode();
       }
       context.showSnackBar(message: ' newPassword != confirmPassword', error: true);
       return false;
+
+
     }
     context.showSnackBar(message: 'Enter required data', error: true);
 
+    return false;
+  }
+
+  bool _checkCode(){
+    if(_codeController.text.toString() == widget.code){
+      return true;
+    }
+    context.showSnackBar(message: 'The code is error', error: true);
     return false;
   }
 

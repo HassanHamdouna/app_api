@@ -1,6 +1,7 @@
 import 'package:app_api/api/controllers/auth_api_controller.dart';
 import 'package:app_api/helpers/context_extenssion.dart';
 import 'package:app_api/models/api_respones.dart';
+import 'package:app_api/screens/auth/change_password_screen.dart';
 import 'package:app_api/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -136,7 +137,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   void _forgotPassword() async {
     ApiRespones respones  = await AuthApiController().forgetPassword(email: _emailController.text);
     if(respones.status){
-      Navigator.pushReplacementNamed(context, '/change_password_screen');
+      print('respones: ${respones}');
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                ChangePasswordScreen(code: '${respones.message}'),
+          ));
     }
     context.showSnackBar(message: respones.message, error: !respones.status);
 
