@@ -51,19 +51,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'register_title',
+                  'register',
                   style: GoogleFonts.cairo(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.sp,
                     color: Colors.black,
-                  ),
-                ),
-                Text(
-                  'register_subtitle',
-                  style: GoogleFonts.cairo(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp,
-                    color: Colors.black45,
                   ),
                 ),
                 SizedBox(height: 20.h),

@@ -54,6 +54,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: 70,
@@ -67,16 +68,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40),
-                  child: Text(
-                      'Please enter your email address. You will receive a link to create new password via email',
-                      style: GoogleFonts.ubuntu(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: const Color(0xff7E7B7B),
-                      )),
-                ),
+                Text(
+                    'Please enter your email address. You will receive a link to create new password via email',
+                    style: GoogleFonts.ubuntu(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xff7E7B7B),
+                    )),
                 const SizedBox(
                   height: 29,
                 ),
@@ -99,10 +97,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff03A7A9),
                       minimumSize: const Size(double.infinity, 48),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(11))),
+                  ),
                   child: Text(
                     'Reset Password',
                     style: GoogleFonts.ubuntu(

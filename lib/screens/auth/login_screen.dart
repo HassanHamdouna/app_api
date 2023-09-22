@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'login_title',
+                'login',
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.bold,
                   fontSize: 20.sp,
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               Text(
-                'login_subtitle',
+                'Please login to use the app',
                 style: GoogleFonts.cairo(
                   fontWeight: FontWeight.bold,
                   fontSize: 16.sp,
@@ -117,11 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('new_account_message'),
+                  const Text('Don\'t have an account?'),
                   TextButton(
                     onPressed: () =>
                         Navigator.pushNamed(context, '/register_screen'),
-                    child: const Text('create_account'),
+                    child: const Text('create account'),
                   ),
                 ],
               ),

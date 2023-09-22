@@ -133,10 +133,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     });
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff03A7A9),
                       minimumSize: const Size(double.infinity, 48),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(11))),
+                      ),
                   child: Text(
                     'change Password',
                     style: GoogleFonts.ubuntu(
